@@ -25,12 +25,12 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Michael Sun' => 'michael@zage.app' }
-  s.source           = { :git => 'https://github.com/Michael Sun/ZageIOS.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/zage-inc/ZageIOS', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '14.0'
 
-  s.source_files = 'ZageIOS/Classes/**/*'
+  s.source_files = 'Source/**/*.swift'
   
   # s.resource_bundles = {
   #   'ZageIOS' => ['ZageIOS/Assets/*.png']

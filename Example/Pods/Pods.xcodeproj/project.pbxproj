@@ -11,8 +11,9 @@
 		0E11BE967ECE3D27AF3AC39A935B6B41 /* Pods-ZageIOS_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B909A73A07426A974E71DD3DE914BA3 /* Pods-ZageIOS_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25C2BC222B2C99F673C68E0290070E48 /* Pods-ZageIOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE83AE31423CCD7C0F465655CE4848 /* Pods-ZageIOS_Example-dummy.m */; };
 		2D8D60F1FF1AC3D58EB1DF0F72963BB2 /* ZageIOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA38F82CC26B5705E81A044BF30B7E6 /* ZageIOS-dummy.m */; };
-		50F5F9ADC7A4F8589729080410247396 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D644569DC4FEFAEB35A60CC1B9A18233 /* ReplaceMe.swift */; };
 		59D26693425D802009ADCE030040598C /* ZageIOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BDF172A20970DEA411C9512C8FDF668 /* ZageIOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69838007272B41970001E0F9 /* Zage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69838006272B41970001E0F9 /* Zage.swift */; };
+		69838009272B41DD0001E0F9 /* ZageWebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69838008272B41DD0001E0F9 /* ZageWebViewViewController.swift */; };
 		ABF32C314DAAB8C30E57623E3E8BD1DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		AE7010294B0F2DCA35FE8B8DEBA070D0 /* Pods-ZageIOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD47E8D4B78F6B2A1C0B6724395CD4A /* Pods-ZageIOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C987AA2C5F6F3A2194C3D38E70788852 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -38,14 +39,16 @@
 
 /* Begin PBXFileReference section */
 		01755627DDF0200C434D245F6E8CB07B /* ZageIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZageIOS.debug.xcconfig; sourceTree = "<group>"; };
-		078DEA9F6D51D9D1957152DCA02A51FB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		078DEA9F6D51D9D1957152DCA02A51FB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1BDF172A20970DEA411C9512C8FDF668 /* ZageIOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZageIOS-umbrella.h"; sourceTree = "<group>"; };
 		2BD39A9A396F6A18F7CD355226F19651 /* Pods-ZageIOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZageIOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4452832C69A3DCC7DA80EE9063D80211 /* ZageIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZageIOS.release.xcconfig; sourceTree = "<group>"; };
 		48F51DB747A452029FB932DB6B04B90C /* ZageIOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZageIOS.modulemap; sourceTree = "<group>"; };
-		5DF4FA1C148095EFD4A3E97ACF67680D /* ZageIOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZageIOS; path = ZageIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DF4FA1C148095EFD4A3E97ACF67680D /* ZageIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZageIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		616F1AD4C492A81320C6F146B5CEF0C9 /* Pods-ZageIOS_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ZageIOS_Tests"; path = Pods_ZageIOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		626E83A1A029605522D8792F9CF0DD83 /* Pods-ZageIOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZageIOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		69838006272B41970001E0F9 /* Zage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zage.swift; sourceTree = "<group>"; };
+		69838008272B41DD0001E0F9 /* ZageWebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZageWebViewViewController.swift; sourceTree = "<group>"; };
 		6A96570A3F31EAC6347E910229F4DAC1 /* Pods-ZageIOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZageIOS_Example.modulemap"; sourceTree = "<group>"; };
 		6FE6C0FC1375DB7EB970A79C14C3D89B /* ZageIOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZageIOS-prefix.pch"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -53,19 +56,18 @@
 		8E81DC7C1AD578190C0CBCF5C669976C /* Pods-ZageIOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZageIOS_Tests-dummy.m"; sourceTree = "<group>"; };
 		8FD47E8D4B78F6B2A1C0B6724395CD4A /* Pods-ZageIOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZageIOS_Example-umbrella.h"; sourceTree = "<group>"; };
 		918BFFF035100A1A4768EFC44FF4B933 /* Pods-ZageIOS_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZageIOS_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		992BB31E4ADE3B7E1736D4FAF629C2E7 /* ZageIOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZageIOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		992BB31E4ADE3B7E1736D4FAF629C2E7 /* ZageIOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZageIOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9B909A73A07426A974E71DD3DE914BA3 /* Pods-ZageIOS_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZageIOS_Tests-umbrella.h"; sourceTree = "<group>"; };
 		9BDAFE7124E050245BDA83570818CA0A /* Pods-ZageIOS_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZageIOS_Example-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A12A00FA775DCE07C1E5562D2F933047 /* Pods-ZageIOS_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZageIOS_Example-frameworks.sh"; sourceTree = "<group>"; };
-		AA4FAFC94538BF810709665AF236135D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		AA4FAFC94538BF810709665AF236135D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AAFC63FD60E5EA3C97E94D7BC0C2C01E /* Pods-ZageIOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZageIOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B41E950B52628E55AB5815E6B3FE8AA0 /* Pods-ZageIOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZageIOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B54715BEC85382D9F00CB4CE2B19ED24 /* Pods-ZageIOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZageIOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C68BE2E83BA362A605B2E39DC38B6AF2 /* Pods-ZageIOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZageIOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C9322326933D5380682A80179A1A85F7 /* Pods-ZageIOS_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ZageIOS_Example"; path = Pods_ZageIOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9322326933D5380682A80179A1A85F7 /* Pods_ZageIOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZageIOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C45C5CA8F7B52EFFC527C44911A3BC /* Pods-ZageIOS_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZageIOS_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		D644569DC4FEFAEB35A60CC1B9A18233 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = ZageIOS/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		DAFE83AE31423CCD7C0F465655CE4848 /* Pods-ZageIOS_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZageIOS_Example-dummy.m"; sourceTree = "<group>"; };
 		DD05DA176D80ECAE4CA425380053BCDA /* ZageIOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZageIOS-Info.plist"; sourceTree = "<group>"; };
 		ECA38F82CC26B5705E81A044BF30B7E6 /* ZageIOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZageIOS-dummy.m"; sourceTree = "<group>"; };
@@ -143,9 +145,9 @@
 		3EEF2B5A64AA46C98E5049588098688A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9322326933D5380682A80179A1A85F7 /* Pods-ZageIOS_Example */,
+				C9322326933D5380682A80179A1A85F7 /* Pods_ZageIOS_Example.framework */,
 				616F1AD4C492A81320C6F146B5CEF0C9 /* Pods-ZageIOS_Tests */,
-				5DF4FA1C148095EFD4A3E97ACF67680D /* ZageIOS */,
+				5DF4FA1C148095EFD4A3E97ACF67680D /* ZageIOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +186,15 @@
 			name = Pod;
 			sourceTree = "<group>";
 		};
+		6983800A272B42980001E0F9 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				69838006272B41970001E0F9 /* Zage.swift */,
+				69838008272B41DD0001E0F9 /* ZageWebViewViewController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		9C3149551276387322B2178067F564EC /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +226,7 @@
 		F35A00CD5080BE626A4D840D07BB4B5C /* ZageIOS */ = {
 			isa = PBXGroup;
 			children = (
-				D644569DC4FEFAEB35A60CC1B9A18233 /* ReplaceMe.swift */,
+				6983800A272B42980001E0F9 /* Source */,
 				5F4E81E63867497F813D8152867B2FBB /* Pod */,
 				3B80A381C57E268A3A2EB0D3D27A8455 /* Support Files */,
 			);
@@ -269,7 +280,7 @@
 			);
 			name = "Pods-ZageIOS_Example";
 			productName = Pods_ZageIOS_Example;
-			productReference = C9322326933D5380682A80179A1A85F7 /* Pods-ZageIOS_Example */;
+			productReference = C9322326933D5380682A80179A1A85F7 /* Pods_ZageIOS_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		19D05C8EC0117F5E244303BBD279E519 /* Pods-ZageIOS_Tests */ = {
@@ -306,7 +317,7 @@
 			);
 			name = ZageIOS;
 			productName = ZageIOS;
-			productReference = 5DF4FA1C148095EFD4A3E97ACF67680D /* ZageIOS */;
+			productReference = 5DF4FA1C148095EFD4A3E97ACF67680D /* ZageIOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -383,7 +394,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50F5F9ADC7A4F8589729080410247396 /* ReplaceMe.swift in Sources */,
+				69838007272B41970001E0F9 /* Zage.swift in Sources */,
+				69838009272B41DD0001E0F9 /* ZageWebViewViewController.swift in Sources */,
 				2D8D60F1FF1AC3D58EB1DF0F72963BB2 /* ZageIOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,7 +499,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-ZageIOS_Example/Pods-ZageIOS_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ZageIOS_Example/Pods-ZageIOS_Example.modulemap";
@@ -498,6 +510,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -625,8 +638,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -647,13 +659,14 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ZageIOS/ZageIOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ZageIOS/ZageIOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ZageIOS/ZageIOS.modulemap";
 				PRODUCT_MODULE_NAME = ZageIOS;
 				PRODUCT_NAME = ZageIOS;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -677,7 +690,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-ZageIOS_Example/Pods-ZageIOS_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ZageIOS_Example/Pods-ZageIOS_Example.modulemap";
@@ -688,6 +701,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -709,13 +723,14 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ZageIOS/ZageIOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ZageIOS/ZageIOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ZageIOS/ZageIOS.modulemap";
 				PRODUCT_MODULE_NAME = ZageIOS;
 				PRODUCT_NAME = ZageIOS;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

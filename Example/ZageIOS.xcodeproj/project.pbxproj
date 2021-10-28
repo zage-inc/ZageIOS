@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3464D0DA9091E3348930D44A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3464D0DA9091E3348930D44A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3CBD4044C7C37A59387B84A4 /* Pods-ZageIOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZageIOS_Example.release.xcconfig"; path = "Target Support Files/Pods-ZageIOS_Example/Pods-ZageIOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4EE4CAD450DF38A4065B5AD0 /* Pods-ZageIOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZageIOS_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ZageIOS_Tests/Pods-ZageIOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZageIOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZageIOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,9 +44,9 @@
 		64E60895390414C59B5CA079 /* Pods_ZageIOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZageIOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC2B6314A2BAE1F7624F4D /* Pods-ZageIOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZageIOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-ZageIOS_Tests/Pods-ZageIOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D2E34652D2260AE86107EDA2 /* Pods-ZageIOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZageIOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZageIOS_Example/Pods-ZageIOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		DC6FFBD66565C1385D2CE153 /* ZageIOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = ZageIOS.podspec; path = ../ZageIOS.podspec; sourceTree = "<group>"; };
+		DC6FFBD66565C1385D2CE153 /* ZageIOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZageIOS.podspec; path = ../ZageIOS.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EAC29D22616BEE8E387CA660 /* Pods_ZageIOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZageIOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE11A2926FDD932E70E52D5F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		EE11A2926FDD932E70E52D5F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 				4EE4CAD450DF38A4065B5AD0 /* Pods-ZageIOS_Tests.debug.xcconfig */,
 				8BDC2B6314A2BAE1F7624F4D /* Pods-ZageIOS_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -419,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -465,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
