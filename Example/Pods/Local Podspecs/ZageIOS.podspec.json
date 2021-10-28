@@ -1,0 +1,22 @@
+{
+  "name": "ZageIOS",
+  "version": "0.1.0",
+  "summary": "A short description of ZageIOS.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Michael Sun/ZageIOS",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Michael Sun": "michael@zage.app"
+  },
+  "source": {
+    "git": "https://github.com/Michael Sun/ZageIOS.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "ZageIOS/Classes/**/*"
+}
