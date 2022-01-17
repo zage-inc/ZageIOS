@@ -17,14 +17,16 @@ import WebKit
 import UIKit
 
 public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
-
+    // The actual webView that is being used to display the Apollo iframe 
     var webView: WKWebView!
 
-    private let zageApp = "https://web.zage.dev"
-    private let validationEndpoint = "https://api.zage.dev/v0/fabric/validate"
+    private let zageApp = "https://sandbox.zage.dev/checkout"
     
-    private var onComplete: ((Any) -> Void)!
+    // On success call back for when the payment flow successfully completion
+    private var onSuccess: ((Any) -> Void)!
+    // On exit call back for when the payment flow is exited before completion
     private var onExit: (() -> Void)!
+    // The merchant's public key
     private var publicKey: String
     
     init(publicKey: String) {
@@ -46,6 +48,7 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         
         let contentController = webView.configuration.userContentController
         
+        // The javascript being injected into the webView
         let js: String = """
             removeIFrame = () => {
                 const frameToRemove = document.getElementById('zg-iframe');
@@ -69,11 +72,11 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
 
                 iframe.style.border = 'none';
                 document.body.append(iframe);
-
+                let publicKey = '\(publicKey)'
                 messageListener = (event) => {
                     const message = event.data;
                     if (message.start && iframe.contentWindow) {
-                        iframe.contentWindow.postMessage({ token }, '\(zageApp)');
+                        iframe.contentWindow.postMessage({ publicKey, token }, '\(zageApp)');
                     } else if (message.close) {
                         removeIFrame();
                         window.removeEventListener('message', messageListener);
@@ -88,80 +91,36 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
             }
         """
         
+        // Add the bridges between the viewController and the iFrame
         contentController.add(self, name: "paymentCompleted")
         contentController.add(self, name: "paymentExited")
         
-        let script = WKUserScript(source: js, injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: false)
+        let script = WKUserScript(source: js, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
         contentController.addUserScript(script)
     }
     
-    public func openPayment(token: String, onComplete: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void  {
+    public func openPayment(paymentToken: String, onSuccess: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void  {
+        // If the iframe is still being loaded, do not open the payment as it will throw an error
         if (webView.isLoading) {
             self.dismiss(animated: true, completion: nil)
             return
         }
-        self.onComplete = onComplete;
+        self.onSuccess = onSuccess;
         self.onExit = onExit; 
-        fetchFabricResponse(key: self.publicKey, completionHandler: { (result) in
-            switch(result) {
-                case .success(let response):
-                    if (response.continuePaymentFlow) {
-                        DispatchQueue.main.async {
-                            self.webView.evaluateJavaScript("openPayment('\(token)')", completionHandler: { (result, err) in
-                                guard err == nil else {
-                                    print("ERROR: \(err!)")
-                                    return
-                                }
-                            })
-                        }
-                    } else {
-                        print("ERROR: Invalid payment flow")
-                        return
-                    }
-                    
-                case .failure(let error):
-                    print("ERROR: \(error)")
-            }
-        })
-    }
-    
-    struct FabricValidationRes: Codable {
-        var continuePaymentFlow: Bool
-        var message: String
-        var statusType: String
-    }
-    
-    private func fetchFabricResponse(key: String, completionHandler: @escaping (Result<FabricValidationRes, Error>) -> Void) {
-        let params = [ "publicKey" : key ]
-        let url = URL(string: validationEndpoint)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error -> Void in
-            if let error = error {
-                completionHandler(.failure(error))
-            } else if let data = data {
-                do {
-                    let result = try JSONDecoder().decode(FabricValidationRes.self, from: data)
-                    completionHandler(.success(result))
-                } catch {
-                    completionHandler(.failure(error))
-                }
-            } else {
-                print("ERROR: Invalid data from Zage endpoint")
+        self.webView.evaluateJavaScript("openPayment('\(paymentToken)')", completionHandler: { (result, err) in
+            guard err == nil else {
+                print("ERROR: \(err!)")
                 return
             }
-            
-        } )
-        task.resume()
+        })
+                   
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch (message.name) {
             case ("paymentCompleted"):
-                self.onComplete(message.body)
+                self.onSuccess(message.body)
                 self.dismiss(animated: true, completion: nil)
             case("paymentExited"):
                 self.onExit()
@@ -170,7 +129,6 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
                 return
         }
     }
- 
     required init?(coder: NSCoder) {
         fatalError()
     }
