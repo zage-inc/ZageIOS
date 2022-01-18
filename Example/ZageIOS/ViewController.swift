@@ -11,7 +11,7 @@ import ZageIOS
 
 class ViewController: UIViewController {
     let TEST_PUBLIC_KEY = "sandbox_key_60jp0v85tbpwev8p";
-    let TEST_PAYMENT_TOKEN = "tk_4dde9564-22b1-42ec-b0e3-bc7526da7ac1";
+    let TEST_PAYMENT_TOKEN = "tk_73187e78-f0c2-43a7-a732-02dd5751dd62";
     
     var zage: Zage?;
     
@@ -44,7 +44,6 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapButton() {
-        print("asdijfasdf")
         zage?.openPayment(paymentToken: TEST_PAYMENT_TOKEN, onSuccess: printSuccess, onExit: printExit)
     }
     

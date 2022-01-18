@@ -2,7 +2,7 @@
 //  ZageWebViewViewController.swift
 //  ZageIOS
 //
-//  Created by Michael Sun on 10/28/21.
+//  Created by Michael Sun on 10/28/21. TODO: Change this
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import Foundation
 //  ZageIOSPkg.swift
 //  ZageIOSPkg
 //
-//  Created by Michael Sun on 10/27/21.
+//  Created by Michael Sun on 10/27/21. TODO: Change this
 //
 import Foundation
 import WebKit
@@ -48,8 +48,10 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         
         let contentController = webView.configuration.userContentController
         
-        // The javascript being injected into the webView
+        // The javascript being injected into the webView TODO: obfuscate this 
         let js: String = """
+            const PROD_APP_URL = 'https://production.zage.dev/checkout';
+            const SB_APP_URL = 'https://sandbox.zage.dev/checkout';
             removeIFrame = () => {
                 const frameToRemove = document.getElementById('zg-iframe');
                 if (frameToRemove && frameToRemove.parentNode) {
@@ -57,10 +59,11 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
                     document.body.style.overflow = 'inherit';
                 }
             }
-            openPayment = (token) => {
+            openPayment = (token, publicKey) => {
                 if (!token) return;
+                const APP_URL = publicKey.startsWith('sandbox_') ? SB_APP_URL : PROD_APP_URL;
                 const iframe = document.createElement('iframe');
-                iframe.src = '\(zageApp)';
+                iframe.src = APP_URL;
                 iframe.id = 'zg-iframe';
                 iframe.style.position = 'absolute';
                 iframe.style.bottom = '0';
@@ -72,11 +75,10 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
 
                 iframe.style.border = 'none';
                 document.body.append(iframe);
-                let publicKey = '\(publicKey)'
                 messageListener = (event) => {
                     const message = event.data;
                     if (message.start && iframe.contentWindow) {
-                        iframe.contentWindow.postMessage({ publicKey, token }, '\(zageApp)');
+                        iframe.contentWindow.postMessage({ publicKey, token }, APP_URL);
                     } else if (message.close) {
                         removeIFrame();
                         window.removeEventListener('message', messageListener);
@@ -95,6 +97,7 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         contentController.add(self, name: "paymentCompleted")
         contentController.add(self, name: "paymentExited")
         
+        // Inject the javascript into webframe
         let script = WKUserScript(source: js, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
         contentController.addUserScript(script)
     }
@@ -108,7 +111,7 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         self.onSuccess = onSuccess;
         self.onExit = onExit; 
 
-        self.webView.evaluateJavaScript("openPayment('\(paymentToken)')", completionHandler: { (result, err) in
+        self.webView.evaluateJavaScript("openPayment('\(paymentToken)', '\(publicKey)')", completionHandler: { (result, err) in
             guard err == nil else {
                 print("ERROR: \(err!)")
                 return
@@ -120,9 +123,11 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch (message.name) {
             case ("paymentCompleted"):
+                // Handle completed payment callback and dismiss the view
                 self.onSuccess(message.body)
                 self.dismiss(animated: true, completion: nil)
             case("paymentExited"):
+                // Handle exited payment callback and dismiss the view
                 self.onExit()
                 self.dismiss(animated: true, completion: nil)
             default:
