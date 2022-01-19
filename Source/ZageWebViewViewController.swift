@@ -47,59 +47,32 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
         let contentController = webView.configuration.userContentController
+        fetchJavascript(completionHandler: { (result) in
+            switch (result) {
+            case .success(let response):
+                // This line forces the encapsulated code to run on the main thread
+                DispatchQueue.main.async {
+                    // Inject script
+                    let script = WKUserScript(
+                        source: String(data: response, encoding: .utf8)!,
+                        injectionTime: WKUserScriptInjectionTime.atDocumentStart,
+                        forMainFrameOnly: false)
+                    contentController.addUserScript(script)
+                }
+            case .failure(let error):
+                print("Error: Payment flow failed with error: \(error)")
+                return
+            }
+        } )
         
-        // The javascript being injected into the webView TODO: obfuscate this 
-        let js: String = """
-            const PROD_APP_URL = 'https://production.zage.dev/checkout';
-            const SB_APP_URL = 'https://sandbox.zage.dev/checkout';
-            removeIFrame = () => {
-                const frameToRemove = document.getElementById('zg-iframe');
-                if (frameToRemove && frameToRemove.parentNode) {
-                    frameToRemove.parentNode.removeChild(frameToRemove);
-                    document.body.style.overflow = 'inherit';
-                }
-            }
-            openPayment = (token, publicKey) => {
-                if (!token) return;
-                const APP_URL = publicKey.startsWith('sandbox_') ? SB_APP_URL : PROD_APP_URL;
-                const iframe = document.createElement('iframe');
-                iframe.src = APP_URL;
-                iframe.id = 'zg-iframe';
-                iframe.style.position = 'absolute';
-                iframe.style.bottom = '0';
-                iframe.style.top = '0';
-                iframe.style.left = '0';
-                iframe.style.right = '0';
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-
-                iframe.style.border = 'none';
-                document.body.append(iframe);
-                messageListener = (event) => {
-                    const message = event.data;
-                    if (message.start && iframe.contentWindow) {
-                        iframe.contentWindow.postMessage({ publicKey, token }, APP_URL);
-                    } else if (message.close) {
-                        removeIFrame();
-                        window.removeEventListener('message', messageListener);
-                        if (message.completed) {
-                            window.webkit.messageHandlers.paymentCompleted.postMessage(JSON.stringify(message.response || {}));
-                        } else {
-                            window.webkit.messageHandlers.paymentExited.postMessage("Exited Payment");
-                        }
-                    }
-                }
-                window.addEventListener('message', messageListener);
-            }
-        """
+        
+    
         
         // Add the bridges between the viewController and the iFrame
         contentController.add(self, name: "paymentCompleted")
         contentController.add(self, name: "paymentExited")
         
-        // Inject the javascript into webframe
-        let script = WKUserScript(source: js, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
-        contentController.addUserScript(script)
+        
     }
     
     public func openPayment(paymentToken: String, onSuccess: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void  {
@@ -118,6 +91,26 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
             }
         })
                    
+    }
+    private func fetchJavascript(completionHandler: @escaping (Result<Data, Error>) -> Void) {
+        let javascriptEndpoint = "http://localhost:3000/v0-iOS.js";
+        let url = URL(string: javascriptEndpoint)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        URLSession.shared.dataTask(with: request, completionHandler: {data, response, error -> Void in
+            if let error = error {
+                completionHandler(.failure(error))
+            } else if let data = data {
+                do {
+                    completionHandler(.success(data))
+                }
+            } else {
+                print("ERROR: Invalid data from Zage endpoint")
+                return
+            }
+        }).resume()
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {

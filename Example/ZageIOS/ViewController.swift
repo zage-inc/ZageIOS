@@ -11,7 +11,7 @@ import ZageIOS
 
 class ViewController: UIViewController {
     let TEST_PUBLIC_KEY = "sandbox_key_60jp0v85tbpwev8p";
-    let TEST_PAYMENT_TOKEN = "tk_73187e78-f0c2-43a7-a732-02dd5751dd62";
+    let TEST_PAYMENT_TOKEN = "tk_15734e0a-1e9f-4998-9664-d35661de2163";
     
     var zage: Zage?;
     
