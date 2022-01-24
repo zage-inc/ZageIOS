@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## ZageIOS
 
-Copyright (c) 2021 Michael Sun <michael@zage.app>
+Copyright (c) 2021 Zage <support@zage.app>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

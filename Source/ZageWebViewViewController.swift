@@ -1,17 +1,3 @@
-//
-//  ZageWebViewViewController.swift
-//  ZageIOS
-//
-//  Created by Michael Sun on 10/28/21. TODO: Change this
-//
-
-import Foundation
-//
-//  ZageIOSPkg.swift
-//  ZageIOSPkg
-//
-//  Created by Michael Sun on 10/27/21. TODO: Change this
-//
 import Foundation
 import WebKit
 import UIKit
@@ -20,7 +6,8 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
     // The actual webView that is being used to display the Apollo iframe 
     var webView: WKWebView!
 
-    private let zageApp = "https://sandbox.zage.dev/checkout"
+    private let PROD_APP_URL = "https://production.zage.dev/checkout";
+    private let SB_APP_URL = "https://sandbox.zage.dev/checkout";
     
     // On success call back for when the payment flow successfully completion
     private var onSuccess: ((Any) -> Void)!
@@ -35,6 +22,9 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
 
         let webConfiguration = WKWebViewConfiguration()
         
+        let zageApp = publicKey.starts(with: "sandbox_") ? SB_APP_URL : PROD_APP_URL;
+        
+        
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         webView.load(URLRequest(url: URL(string: zageApp)!))
@@ -47,6 +37,8 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
         let contentController = webView.configuration.userContentController
+        
+        // Fetch injected javascript from Zage backend
         fetchJavascript(completionHandler: { (result) in
             switch (result) {
             case .success(let response):
@@ -60,19 +52,16 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
                     contentController.addUserScript(script)
                 }
             case .failure(let error):
-                print("Error: Payment flow failed with error: \(error)")
+                print("Error: Fetching javascript failed with error: \(error)")
+                self.dismiss(animated: true, completion: nil)
+                self.onExit()
                 return
             }
         } )
         
-        
-    
-        
         // Add the bridges between the viewController and the iFrame
         contentController.add(self, name: "paymentCompleted")
         contentController.add(self, name: "paymentExited")
-        
-        
     }
     
     public func openPayment(paymentToken: String, onSuccess: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void  {
@@ -87,13 +76,16 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         self.webView.evaluateJavaScript("openPayment('\(paymentToken)', '\(publicKey)')", completionHandler: { (result, err) in
             guard err == nil else {
                 print("ERROR: \(err!)")
+                self.dismiss(animated: true, completion: nil)
+                self.onExit()
                 return
             }
         })
-                   
     }
+    
+    
     private func fetchJavascript(completionHandler: @escaping (Result<Data, Error>) -> Void) {
-        let javascriptEndpoint = "http://localhost:3000/v0-iOS.js";
+        let javascriptEndpoint = "https://qt88c29c0e.execute-api.us-west-1.amazonaws.com/live-test/v0-ios.js";
         let url = URL(string: javascriptEndpoint)!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -108,11 +100,14 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
                 }
             } else {
                 print("ERROR: Invalid data from Zage endpoint")
+                self.dismiss(animated: true, completion: nil)
+                self.onExit()
                 return
             }
         }).resume()
     }
     
+    // This method acts as the bridge between the javscript in the iFrame and the native Swift code
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch (message.name) {
             case ("paymentCompleted"):

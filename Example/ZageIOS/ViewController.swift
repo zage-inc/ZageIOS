@@ -11,13 +11,13 @@ import ZageIOS
 
 class ViewController: UIViewController {
     let TEST_PUBLIC_KEY = "sandbox_key_60jp0v85tbpwev8p";
-    let TEST_PAYMENT_TOKEN = "tk_15734e0a-1e9f-4998-9664-d35661de2163";
+    let TEST_PAYMENT_TOKEN = "tk_9875fc22-494a-4060-9e66-a5c586dcf65e";
     
     var zage: Zage?;
     
     let button: UIButton = {
         let button = UIButton()
-        button.setTitle("Z-Pay", for: .normal)
+        button.setTitle("Pay with Zage", for: .normal)
         button.backgroundColor = .systemGreen
         button.setTitleColor(.black, for: .normal)
         return button
