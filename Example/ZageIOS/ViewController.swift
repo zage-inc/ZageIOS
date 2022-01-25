@@ -10,8 +10,8 @@ import UIKit
 import ZageIOS
 
 class ViewController: UIViewController {
-    let TEST_PUBLIC_KEY = "sandbox_key_60jp0v85tbpwev8p";
-    let TEST_PAYMENT_TOKEN = "tk_9875fc22-494a-4060-9e66-a5c586dcf65e";
+    let TEST_PUBLIC_KEY = "";
+    let TEST_PAYMENT_TOKEN = "";
     
     var zage: Zage?;
     
@@ -47,8 +47,8 @@ class ViewController: UIViewController {
         zage?.openPayment(paymentToken: TEST_PAYMENT_TOKEN, onSuccess: printSuccess, onExit: printExit)
     }
     
-    private func printSuccess(idk: Any) -> Void {
-        print("i completed a payment with response: \(idk)")
+    private func printSuccess(response: Any) -> Void {
+        print("i completed a payment with response: \(response)")
     }
     
     private func printExit() -> Void {
