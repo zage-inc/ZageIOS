@@ -21,11 +21,11 @@ public class Zage {
         fatalError()
     }
     
-    public func openPayment(paymentToken: String, onSuccess: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void {
+    public func openPayment(paymentToken: String, onComplete: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void {
         // Present/display the view controller in context
         context.present(vc, animated: true)
         // Commence the payment flow
-        vc.openPayment(paymentToken: paymentToken, onSuccess: onSuccess, onExit: onExit)
+        vc.openPayment(paymentToken: paymentToken, onComplete: onComplete, onExit: onExit)
     }
 }
 

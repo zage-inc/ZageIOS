@@ -10,7 +10,7 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
     private let SB_APP_URL = "https://sandbox.zage.dev/checkout";
     
     // On success call back for when the payment flow successfully completion
-    private var onSuccess: ((Any) -> Void)!
+    private var onComplete: ((Any) -> Void)!
     // On exit call back for when the payment flow is exited before completion
     private var onExit: (() -> Void)!
     // The merchant's public key
@@ -64,13 +64,13 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         contentController.add(self, name: "paymentExited")
     }
     
-    public func openPayment(paymentToken: String, onSuccess: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void  {
+    public func openPayment(paymentToken: String, onComplete: @escaping (Any) -> Void, onExit: @escaping () -> Void) -> Void  {
         // If the iframe is still being loaded, do not open the payment as it will throw an error
         if (webView.isLoading) {
             self.dismiss(animated: true, completion: nil)
             return
         }
-        self.onSuccess = onSuccess;
+        self.onComplete = onComplete;
         self.onExit = onExit; 
 
         self.webView.evaluateJavaScript("openPayment('\(paymentToken)', '\(publicKey)')", completionHandler: { (result, err) in
@@ -112,7 +112,7 @@ public class ZageWebViewViewController: UIViewController, WKUIDelegate, WKScript
         switch (message.name) {
             case ("paymentCompleted"):
                 // Handle completed payment callback and dismiss the view
-                self.onSuccess(message.body)
+                self.onComplete(message.body)
                 self.dismiss(animated: true, completion: nil)
             case("paymentExited"):
                 // Handle exited payment callback and dismiss the view

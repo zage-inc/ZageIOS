@@ -75,7 +75,7 @@ end
 Next, import the Zage package in your checkout screen's view controller:
 
 ```swift
-import Zage
+import ZageIOS
 ```
 
 #### Implementation 
@@ -92,13 +92,13 @@ class ViewController: UIViewController {
 }
 ```
 
-Next, in the handler you'll use to open the Zage payment process, call the openPayment method in the Zage object you created and pass in your payment token, onSuccess callback, and onExit callback, along with any other functionality you wish to include. Be aware that the onSuccess callback will return a serialized version of the JSON object returned by the web hook you used to create the payment token. 
+Next, in the handler you'll use to open the Zage payment process, call the openPayment method in the Zage object you created and pass in your payment token, onComplete callback, and onExit callback, along with any other functionality you wish to include. Be aware that the onComplete callback will return a serialized version of the JSON object returned by the web hook you used to create the payment token. 
 
 ```swift
 @objc private func didTapButton() { 
     zage?.openPayment(paymentToken: "<PAYMENT_TOKEN>", 
-        onSuccess: {(res: Any) -> Void in 
-            // Insert onSuccess functionality here 
+        onComplete: {(res: Any) -> Void in 
+            // Insert onComplete functionality here 
         }, 
         onExit: {() -> Void in 
             // Insert onExit functionality here 
@@ -140,8 +140,8 @@ class ViewController: UIViewController {
     
     @objc private func didTapButton() { 
     zage?.openPayment(paymentToken: "<PAYMENT_TOKEN>", 
-            onSuccess: {(res: Any) -> Void in 
-                // Insert onSuccess functionality here 
+            onComplete: {(res: Any) -> Void in 
+                // Insert onComplete functionality here 
             }, 
             onExit: {() -> Void in 
                 // Insert onExit functionality here 
