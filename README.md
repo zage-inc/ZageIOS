@@ -58,10 +58,17 @@ ZageIOS is available under the MIT license. See the LICENSE file for more info.
 
 ## Integration
 
-#### Setup 
-To install the Zage Swift package, make sure you have cocoa pods installed and type in the following command into your application's directory:
+#### Intro
 
-`pod install Zage`
+The ZageIOS package provides an easy and lightweight way to implement Zage as a payment method into your iOS application. To use it, you must have a public and private key pair from Zage, so please ensure that you have received one. 
+
+#### Setup 
+To install the ZageIOS Package, first make sure that you have Cocoapods installed and you are using it in your application. Then, include the ZageIOS pacakge in your application’s Podfile. It should look something like the following:
+
+`target 'MyApp' do
+  use_frameworks!
+  pod 'ZageIOS'
+end`
 
 Next, import the Zage package in your checkout screen's view controller:
 
@@ -81,7 +88,7 @@ class ViewController: UIViewController {
 }
 ```
 
-Next, in the handler you'll use to open the Zage payment process, call the openPayment method in the Zage object you created and pass in your payment token, onSuccess callback, and onExit callback, along with any other functionality you wish to include. Be aware that the onSuccess function will return a serialized version of the JSON object returned by the web hook you used to create the payment token.
+Next, in the handler you'll use to open the Zage payment process, call the openPayment method in the Zage object you created and pass in your payment token, onSuccess callback, and onExit callback, along with any other functionality you wish to include. Be aware that the onSuccess callback will return a serialized version of the JSON object returned by the web hook you used to create the payment token. 
 
 ```
 @objc private func didTapButton() { 
