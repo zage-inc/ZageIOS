@@ -13,7 +13,7 @@
 		2D8D60F1FF1AC3D58EB1DF0F72963BB2 /* ZageIOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA38F82CC26B5705E81A044BF30B7E6 /* ZageIOS-dummy.m */; };
 		59D26693425D802009ADCE030040598C /* ZageIOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BDF172A20970DEA411C9512C8FDF668 /* ZageIOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69838007272B41970001E0F9 /* Zage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69838006272B41970001E0F9 /* Zage.swift */; };
-		69838009272B41DD0001E0F9 /* ZageWebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69838008272B41DD0001E0F9 /* ZageWebViewViewController.swift */; };
+		69AB139227A4ACC40061B0AA /* ZageWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AB139127A4ACC40061B0AA /* ZageWKWebViewController.swift */; };
 		ABF32C314DAAB8C30E57623E3E8BD1DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		AE7010294B0F2DCA35FE8B8DEBA070D0 /* Pods-ZageIOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD47E8D4B78F6B2A1C0B6724395CD4A /* Pods-ZageIOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C987AA2C5F6F3A2194C3D38E70788852 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -48,7 +48,7 @@
 		616F1AD4C492A81320C6F146B5CEF0C9 /* Pods-ZageIOS_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ZageIOS_Tests"; path = Pods_ZageIOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		626E83A1A029605522D8792F9CF0DD83 /* Pods-ZageIOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZageIOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		69838006272B41970001E0F9 /* Zage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zage.swift; sourceTree = "<group>"; };
-		69838008272B41DD0001E0F9 /* ZageWebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZageWebViewViewController.swift; sourceTree = "<group>"; };
+		69AB139127A4ACC40061B0AA /* ZageWKWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZageWKWebViewController.swift; sourceTree = "<group>"; };
 		6A96570A3F31EAC6347E910229F4DAC1 /* Pods-ZageIOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZageIOS_Example.modulemap"; sourceTree = "<group>"; };
 		6FE6C0FC1375DB7EB970A79C14C3D89B /* ZageIOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZageIOS-prefix.pch"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -189,8 +189,8 @@
 		6983800A272B42980001E0F9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				69AB139127A4ACC40061B0AA /* ZageWKWebViewController.swift */,
 				69838006272B41970001E0F9 /* Zage.swift */,
-				69838008272B41DD0001E0F9 /* ZageWebViewViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -394,8 +394,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69AB139227A4ACC40061B0AA /* ZageWKWebViewController.swift in Sources */,
 				69838007272B41970001E0F9 /* Zage.swift in Sources */,
-				69838009272B41DD0001E0F9 /* ZageWebViewViewController.swift in Sources */,
 				2D8D60F1FF1AC3D58EB1DF0F72963BB2 /* ZageIOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

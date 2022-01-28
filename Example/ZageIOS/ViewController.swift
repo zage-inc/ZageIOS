@@ -10,8 +10,8 @@ import UIKit
 import ZageIOS
 
 class ViewController: UIViewController {
-    let TEST_PUBLIC_KEY = "";
-    let TEST_PAYMENT_TOKEN = "";
+    let TEST_PUBLIC_KEY = ""
+    let TEST_PAYMENT_TOKEN = ""
     
     var zage: Zage?;
     
@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     
 
     required init?(coder: NSCoder) {
-        super.init(nibName: nil, bundle: nil);
-        self.view.backgroundColor = UIColor.white
+        super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = UIColor.white
         
         zage = Zage(context: self, publicKey: TEST_PUBLIC_KEY)
     }
@@ -37,17 +37,17 @@ class ViewController: UIViewController {
         
         view.addSubview(button)
         
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 200, width: self.view.frame.width * 0.5, height: self.view.frame.height * 0.1)
         button.center = view.center
         button.layer.cornerRadius = 40
     }
     
-    @objc private func didTapButton() {
-        zage?.openPayment(paymentToken: TEST_PAYMENT_TOKEN, onSuccess: printSuccess, onExit: printExit)
+    @objc private func didTapButton(_ sender: UIButton) {
+        zage?.openPayment(paymentToken: TEST_PAYMENT_TOKEN, onComplete: printComplete, onExit: printExit)
     }
     
-    private func printSuccess(response: Any) -> Void {
+    private func printComplete(response: Any) -> Void {
         print("i completed a payment with response: \(response)")
     }
     
