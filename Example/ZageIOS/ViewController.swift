@@ -62,7 +62,6 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapInfoButton(_ sender: UIButton) {
-        print("Open modal")
         zage?.openModal()
     }
     

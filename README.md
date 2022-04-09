@@ -15,23 +15,24 @@
 
   
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project:
+- Clone the repo
+- Run `pod install` from inside the Example directory
+- Open `Example/ZageIOS.xcworkspace` in XCode
+- Run the App
 
   
 
 ## Requirements
-
-
-  
-
-## Installation
+- iOS 9
 
   
+
+## Installation  
 
 ZageIOS is available through [CocoaPods](https://cocoapods.org). To install
 
 it, simply add the following line to your Podfile:
-
   
 
 ```ruby
@@ -109,6 +110,17 @@ Next, in the handler you'll use to open the Zage payment process, call the openP
 ```
 
 And that's it! With just the Zage object and one method, you can integrate Zage into your Swift application. Here is an example with all of the pieces in one place:
+
+
+#### Additional Features
+
+Zage offers an informational modal to explain what Zage is and how it works to your customers. By simply calling `zage.openModal()`, you can present this modal to your customers. They'll never leave your application
+
+```swift
+@objc private func didTapButton() {
+  zage?.openModal()
+}
+```
 
 #### Full Implementation Example
 

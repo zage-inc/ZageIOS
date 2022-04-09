@@ -44,7 +44,6 @@ public class ZageWKInfoModalViewController: UIViewController, WKUIDelegate, SFSa
         webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.scrollView.isScrollEnabled = false
         webView.isOpaque = false
-        webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
 
         view = webView
         let contentController = webView.configuration.userContentController
