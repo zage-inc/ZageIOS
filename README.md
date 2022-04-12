@@ -24,7 +24,7 @@ To run the example project:
   
 
 ## Requirements
-- iOS 9
+- iOS 11
 
   
 
