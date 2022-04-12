@@ -10,7 +10,7 @@ import UIKit
 import ZageIOS
 
 class ViewController: UIViewController {
-    let TEST_PUBLIC_KEY = ""
+    let TEST_PUBLIC_KEY = "sandbox_public_key"
     let TEST_PAYMENT_TOKEN = ""
     
     var zage: Zage?;
@@ -19,6 +19,14 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Pay with Zage", for: .normal)
         button.backgroundColor = .systemGreen
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    
+    let infoModalButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Learn about Zage", for: .normal)
+        button.backgroundColor = .systemPurple
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -41,10 +49,20 @@ class ViewController: UIViewController {
         button.frame = CGRect(x: 0, y: 200, width: self.view.frame.width * 0.5, height: self.view.frame.height * 0.1)
         button.center = view.center
         button.layer.cornerRadius = 40
+        
+        view.addSubview(infoModalButton)
+        infoModalButton.addTarget(self, action: #selector(didTapInfoButton(_:)), for: .touchUpInside)
+        infoModalButton.frame = CGRect(x: 0, y: 200, width: self.view.frame.width * 0.5, height:
+                                self.view.frame.height * 0.1)
+        
     }
     
     @objc private func didTapButton(_ sender: UIButton) {
         zage?.openPayment(paymentToken: TEST_PAYMENT_TOKEN, onComplete: printComplete, onExit: printExit)
+    }
+    
+    @objc private func didTapInfoButton(_ sender: UIButton) {
+        zage?.openModal()
     }
     
     private func printComplete(response: Any) -> Void {

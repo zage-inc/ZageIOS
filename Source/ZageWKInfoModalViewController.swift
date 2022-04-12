@@ -1,24 +1,21 @@
 import Foundation
-import WebKit
+import SafariServices
 import UIKit
+import WebKit
 
-public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
-    // The actual webView that is being used to display the Apollo iframe 
-    var webView: WKWebView!
-
-    private let PROD_APP_URL = "https://production.zage.dev/checkout"
-    private let SB_APP_URL = "https://sandbox.zage.dev/checkout"
+public class ZageWKInfoModalViewController: UIViewController, WKUIDelegate, SFSafariViewControllerDelegate, WKScriptMessageHandler {
     
-    /// fOn success completion block for when the payment flow successfully completed
-    private var onComplete: ((Any) -> Void)!
-    /// On exit completion block for when the payment flow is exited before payment is processed
-    private var onExit: (() -> Void)!
+    // webView that is being used to display the info modal
+    var webView: WKWebView!
+    
+    private let PROD_INFO_URL = "https://info.zage.dev"
+    private let SB_INFO_URL = "https://info.sandbox.zage.dev"
+
     /// The merchant's public key
     private var publicKey: String
     
-    enum PaymentStatus: String, CustomStringConvertible {
-        case paymentCompleted
-        case paymentExited
+    enum ModalEvent: String, CustomStringConvertible {
+        case dismissed
         
         var description: String {
             rawValue
@@ -35,22 +32,20 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
 
         let webConfiguration = WKWebViewConfiguration()
         
-        let zageApp = publicKey.starts(with: "sandbox_") ? SB_APP_URL : PROD_APP_URL
-        guard let url = URL(string: zageApp) else {
+        let infoModalUrl = publicKey.starts(with: "sandbox_") ? SB_INFO_URL : PROD_INFO_URL
+        guard let webViewUrl = URL(string: infoModalUrl) else {
             self.popupAlert(title: "Error", message: "Unable to retrieve url")
             return
         }
         
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
-        webView.load(URLRequest(url: url))
+        webView.load(URLRequest(url: webViewUrl))
         webView.scrollView.contentInsetAdjustmentBehavior = .never
+        webView.scrollView.isScrollEnabled = false
         webView.isOpaque = false
-        
+
         view = webView
-        
-        modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        
         let contentController = webView.configuration.userContentController
         
         // Fetch injected javascript from Zage backend
@@ -68,31 +63,23 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
             case .failure(let error):
                 print("Error: Fetching javascript failed with error: \(error)")
                 self.dismiss(animated: true, completion: nil)
-                self.onExit()
                 return
             }
         } )
         
-        // Add the bridges between the viewController and the iFrame
-        contentController.add(self, name: PaymentStatus.paymentCompleted.description)
-        contentController.add(self, name: PaymentStatus.paymentExited.description)
+        contentController.add(self, name: ModalEvent.dismissed.description)
     }
-
     
-    public func openPayment(paymentToken: String, onComplete: @escaping (Any) -> Void, onExit: @escaping () -> Void) {
-        // If the iframe is still being loaded, do not open the payment as it will throw an error
+    public func openModal() {
         if (webView.isLoading) {
             self.dismiss(animated: true, completion: nil)
             return
         }
-        self.onComplete = onComplete
-        self.onExit = onExit
-
-        self.webView.evaluateJavaScript("openPayment('\(paymentToken)', '\(publicKey)')", completionHandler: { _, err in
+        webView.evaluateJavaScript("openModal('\(publicKey)')",
+            completionHandler: { msg, err in
             guard err == nil else {
                 print("ERROR: \(err!)")
                 self.dismiss(animated: true, completion: nil)
-                self.onExit()
                 return
             }
         })
@@ -119,7 +106,6 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
             } else {
                 print("ERROR: Invalid data from Zage endpoint")
                 self.dismiss(animated: true, completion: nil)
-                self.onExit()
                 return
             }
         }).resume()
@@ -134,18 +120,30 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
     
     // This method acts as the bridge between the javscript in the iFrame and the native Swift code
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        switch PaymentStatus(rawValue: message.name) {
-        case .paymentCompleted:
-            // Handle completed payment callback and dismiss the view
-            self.onComplete(message.body)
-            self.dismiss(animated: true, completion: nil)
-        case .paymentExited:
-            // Handle exited payment callback and dismiss the view
-            self.onExit()
+        switch ModalEvent(rawValue: message.name) {
+        case .dismissed:
             self.dismiss(animated: true, completion: nil)
         default:
             return
         }
+    }
+
+    public func webView(_ webView: WKWebView,
+                        createWebViewWith configuration: WKWebViewConfiguration,
+                        for navigationAction: WKNavigationAction,
+                        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        guard let url = navigationAction.request.url else {
+            return nil
+        }
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        self.present(safariViewController, animated: true)
+        return nil
+    }
+    
+    public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true)
     }
 }
 
