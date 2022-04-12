@@ -114,7 +114,7 @@ And that's it! With just the Zage object and one method, you can integrate Zage 
 
 #### Additional Features
 
-Zage offers an informational modal to explain what Zage is and how it works to your customers. By simply calling `zage.openModal()`, you can present this modal to your customers. They'll never leave your application
+Zage offers an informational modal to explain what Zage is and how Zage works for your customers. By simply calling `zage.openModal()`, you can present this modal to your customers. They'll never leave your application.
 
 ```swift
 @objc private func didTapButton() {

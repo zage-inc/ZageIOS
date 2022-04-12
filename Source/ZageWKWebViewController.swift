@@ -100,7 +100,7 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
     
     
     private func fetchJavascript(completionHandler: @escaping (Result<Data, Error>) -> Void) {
-        let javascriptEndpoint = "https://qt88c29c0e.execute-api.us-west-1.amazonaws.com/live-test/v0-ios.js"
+        let javascriptEndpoint = "https://api.zage.dev/v0/v0-ios.js"
         guard let url = URL(string: javascriptEndpoint) else {
             self.popupAlert(title: "Error", message: "Unable to retrieve javascript url")
             return
