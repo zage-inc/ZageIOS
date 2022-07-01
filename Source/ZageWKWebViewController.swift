@@ -1,8 +1,10 @@
 import Foundation
+import SafariServices
 import WebKit
 import UIKit
 
-public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
+public class ZageWKWebViewController: UIViewController, WKUIDelegate, SFSafariViewControllerDelegate,
+                                      WKScriptMessageHandler {
     // The actual webView that is being used to display the Apollo iframe 
     var webView: WKWebView!
 
@@ -146,6 +148,24 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
         default:
             return
         }
+    }
+    
+    public func webView(_ webView: WKWebView,
+                        createWebViewWith configuration: WKWebViewConfiguration,
+                        for navigationAction: WKNavigationAction,
+                        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        guard let url = navigationAction.request.url else {
+            return nil
+        }
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        self.present(safariViewController, animated: true)
+        return nil
+    }
+    
+    public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true)
     }
 }
 
