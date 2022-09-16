@@ -44,36 +44,9 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         webView.load(URLRequest(url: url))
-        webView.scrollView.contentInsetAdjustmentBehavior = .always
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.isOpaque = false
-        webView.insetsLayoutMarginsFromSafeArea = true
-        let rgbValue = 0x1F2937
-        let color = UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(0.75)
-        )
-        let topSafeAreaView = UIView()
-        webView.addSubview(topSafeAreaView)
-        topSafeAreaView.translatesAutoresizingMaskIntoConstraints = false
-        topSafeAreaView.backgroundColor = color
-        topSafeAreaView.isOpaque = true
-        NSLayoutConstraint.activate([
-            topSafeAreaView.topAnchor.constraint(equalTo: webView.topAnchor),
-            topSafeAreaView.bottomAnchor.constraint(greaterThanOrEqualTo: webView.safeAreaLayoutGuide.topAnchor ),
-            topSafeAreaView.widthAnchor.constraint(equalTo: webView.widthAnchor),
-        ])
-        let bottomSafeAreaView = UIView()
-        webView.addSubview(bottomSafeAreaView)
-        bottomSafeAreaView.translatesAutoresizingMaskIntoConstraints = false
-        bottomSafeAreaView.backgroundColor = color
-        NSLayoutConstraint.activate([
-            bottomSafeAreaView.topAnchor.constraint(equalTo:  webView.safeAreaLayoutGuide.bottomAnchor),
-            bottomSafeAreaView.bottomAnchor.constraint(equalTo: webView.bottomAnchor),
-            bottomSafeAreaView.widthAnchor.constraint(equalTo: webView.widthAnchor),
-        ])
-        webView.sendSubviewToBack(topSafeAreaView)
+        
         view = webView
         
         modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
@@ -114,11 +87,8 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
         }
         self.onComplete = onComplete
         self.onExit = onExit
-        
-        let injectedJS = """
-            openPayment('\(paymentToken)', '\(publicKey)')
-            """
-        self.webView.evaluateJavaScript(injectedJS, completionHandler: { _, err in
+
+        self.webView.evaluateJavaScript("openPayment('\(paymentToken)', '\(publicKey)')", completionHandler: { _, err in
             guard err == nil else {
                 print("ERROR: \(err!)")
                 self.dismiss(animated: true, completion: nil)

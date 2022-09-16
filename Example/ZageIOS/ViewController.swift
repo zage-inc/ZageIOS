@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  ZageIOS
 //
-//  Created by Michael Sun on 10/28/2021.
-//  Copyright (c) 2021 Michael Sun. All rights reserved.
 //
 
 import UIKit

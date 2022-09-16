@@ -1,5 +1,5 @@
 PODS:
-  - ZageIOS (0.3.0)
+  - ZageIOS (0.3.2)
 
 DEPENDENCIES:
   - ZageIOS (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ZageIOS: 626a88d601d20d0e0afdf1368d77ef0c2c639067
+  ZageIOS: ce440520d7ba19dad60c0e8a3dfb4e3e5c26a377
 
 PODFILE CHECKSUM: 43bd65b19845ef0299cd122377c39b22096f1484
 

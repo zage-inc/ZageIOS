@@ -1,6 +1,6 @@
 {
   "name": "ZageIOS",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "summary": "The Zage iOS SDK",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/zage-inc/ZageIOS",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/zage-inc/ZageIOS.git",
-    "tag": "0.3.0"
+    "tag": "0.3.2"
   },
   "swift_versions": "5.0",
   "platforms": {
