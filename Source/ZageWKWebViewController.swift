@@ -46,7 +46,7 @@ public class ZageWKWebViewController: UIViewController, WKUIDelegate, WKScriptMe
         webView.load(URLRequest(url: url))
         webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.isOpaque = false
-        
+        webView.insetsLayoutMarginsFromSafeArea = true
         view = webView
         
         modalPresentationStyle = UIModalPresentationStyle.overCurrentContext

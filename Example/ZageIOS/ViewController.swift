@@ -10,8 +10,8 @@ import UIKit
 import ZageIOS
 
 class ViewController: UIViewController {
-    let TEST_PUBLIC_KEY = "sandbox_public_key"
-    let TEST_PAYMENT_TOKEN = ""
+    let TEST_PUBLIC_KEY = "sandbox_key_nj0vs40wr61ck3go"
+    let TEST_PAYMENT_TOKEN = "tk_03d4c71a-e6f1-456e-ae19-b313fb4acd5e"
     
     var zage: Zage?;
     
